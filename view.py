@@ -1,16 +1,15 @@
 import streamlit as st
 from Client.registerClient import carregar_registro_vendas
 from Client.showCustomers import showCustomers
+from database.supabaseUtils import inicializar_supabase
+
+supabase = inicializar_supabase()
 
 
 def viewApp():
     try:
-        # Configuração da página deve ser a primeira chamada
-        st.title("⚡ Ferramentas de vendas")
-
-        # Sidebar styling and options
         with st.sidebar:
-            st.title("⚙️ Escolha a ferramenta")
+            st.title("⚡ Ferramentas de vendas")
             st.markdown("Selecione uma das opções abaixo para começar:")
 
             opcao = st.selectbox(
@@ -26,11 +25,25 @@ def viewApp():
                 placeholder="Listar Vendas",
             )
 
+            if st.button(
+                label="Logout",
+                key="btn_logout",
+                type="tertiary",
+                icon="🔒",
+                use_container_width=True
+            ):
+                supabase.auth.sign_out()
+                st.session_state['logged_in'] = False
+                st.session_state['page'] = "login"
+                st.rerun()
+
         st.markdown("---")
         if opcao == "Registrar Cliente":
+            st.session_state['page'] = "cadastrar_venda"
             carregar_registro_vendas()
             st.toast("Dados carregados com sucesso.", icon="✅")
         elif opcao == "Listar Vendas":
+            st.session_state['page'] = "listar_vendas"
             showCustomers()
             st.toast("Dados carregados com sucesso.", icon="✅")
         elif opcao == "Chat com Agente de IA":

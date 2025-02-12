@@ -1,6 +1,6 @@
 import streamlit as st
 from datetime import datetime, time
-from supabaseUtils import inicializar_supabase
+from database.supabaseUtils import inicializar_supabase
 
 supabase = inicializar_supabase()
 
@@ -15,7 +15,11 @@ def carregar_registro_vendas():
 
         st.header(body="Registrar uma venda", divider=True)
 
-        with st.form("registro_venda", key="form_registrar", clear_on_submit=True):
+        with st.form( 
+            key="registro_venda", 
+            clear_on_submit=True,
+            border=True
+            ):
             produto = st.text_input(
                 label="Produto",
                 key="produto_input",
@@ -53,7 +57,11 @@ def carregar_registro_vendas():
                 key="forma_pagamento_selectbox"
             )
             submit = st.form_submit_button(
-                label="Registrar Venda", type="primary", icon="📝", use_container_width=True)
+                label="Registrar Venda", 
+                type="primary", 
+                icon="📝", 
+                use_container_width=True
+            )
 
         if submit:
             venda = {
