@@ -25,13 +25,13 @@ def protected_page():
     viewApp()
 
 def login_page():
-    st.header("Faça login para acessar as funcionalidades.", divider=True)
-    col_01, col_02 = st.columns(2)
+    col_01, col_02 = st.columns(2, vertical_alignment="center", gap="large")
 
     with col_01:
         st.image(image=HERO_IMAGE, use_container_width=True)
 
     with col_02:
+        st.header("Faça login para acessar as funcionalidades.", divider=True)
         email = st.text_input(
             label="Email",
             key="email_login_input",

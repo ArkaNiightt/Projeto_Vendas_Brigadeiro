@@ -41,13 +41,12 @@ def viewApp():
         if opcao == "Registrar Cliente":
             st.session_state['page'] = "cadastrar_venda"
             carregar_registro_vendas()
-            st.toast("Dados carregados com sucesso.", icon="✅")
         elif opcao == "Listar Vendas":
             st.session_state['page'] = "listar_vendas"
             showCustomers()
-            st.toast("Dados carregados com sucesso.", icon="✅")
         elif opcao == "Chat com Agente de IA":
-            st.toast("Chat iniciado com sucesso.", icon="✅")
+            st.session_state['page'] = "chat"
+            st.markdown("🚧 Em construção...")
         st.sidebar.markdown("---")
         with st.sidebar:
             st.info(
