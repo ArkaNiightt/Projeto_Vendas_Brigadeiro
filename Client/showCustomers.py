@@ -1,8 +1,6 @@
 import streamlit as st
 from database.supabaseUtils import get_all_data
 import pandas as pd
-import datetime
-import time
 
 
 def showCustomers():
