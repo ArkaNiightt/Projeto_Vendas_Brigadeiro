@@ -13,9 +13,9 @@ def is_authenticated():
 def carregar_registro_vendas():
     if st.session_state['page'] == "cadastrar_venda":
 
-        st.title("Registrar Venda")
+        st.header(body="Registrar uma venda", divider=True)
 
-        with st.form("registro_venda", clear_on_submit=True):
+        with st.form("registro_venda", key="form_registrar", clear_on_submit=True):
             produto = st.text_input(
                 label="Produto",
                 key="produto_input",
@@ -27,7 +27,7 @@ def carregar_registro_vendas():
                 placeholder="Digite o nome do cliente")
             valor = st.number_input(
                 label="Valor",
-                min_value=1.0, 
+                min_value=1.0,
                 format="%.2f",
                 key="valor_input",
                 placeholder="Digite o valor do produto"
@@ -68,7 +68,7 @@ def carregar_registro_vendas():
             try:
                 response = supabase.table("vendas").insert(venda).execute()
                 if response:
-                    st.success(
-                        f"Dados inseridos com sucesso: {response.data}", icon="✅")
+                    st.toast(f"Dados inseridos com sucesso", icon="✅")
+                    st.write(response.data)
             except Exception as e:
                 st.error(f"Erro: {str(e)}")

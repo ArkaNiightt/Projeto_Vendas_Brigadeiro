@@ -1,6 +1,12 @@
 import streamlit as st
 from supabaseUtils import inicializar_supabase
-from Client.registerClient import carregar_registro_vendas
+from view import viewApp
+
+st.set_page_config(
+    page_title="Sistema de Vendas",
+    page_icon="🛒",
+    layout="centered"
+)
 
 supabase = inicializar_supabase()
 
@@ -8,10 +14,16 @@ if 'page' not in st.session_state:
     st.session_state['page'] = "login"
 
 # Função para verificar o login
+
+
 def check_login(email, password):
     try:
         user = supabase.auth.sign_in_with_password(
-            {"email": email, "password": password})
+            {
+                "email": email,
+                "password": password
+            }
+        )
         if user:
             return True
     except Exception as e:
@@ -22,7 +34,7 @@ def check_login(email, password):
 
 
 def protected_page():
-    carregar_registro_vendas()
+    viewApp()
 
 # Interface do Streamlit
 
