@@ -1,3 +1,5 @@
+from database.supabaseUtils import inicializar_supabase
+from view import viewApp
 import streamlit as st
 
 st.set_page_config(
@@ -6,23 +8,25 @@ st.set_page_config(
     layout="wide"
 )
 
-from view import viewApp
-from database.supabaseUtils import inicializar_supabase
 
 supabase = inicializar_supabase()
 HERO_IMAGE = "assets/loginHero.jpg"
 
+
 def check_login(email, password):
     try:
-        user = supabase.auth.sign_in_with_password({"email": email, "password": password})
+        user = supabase.auth.sign_in_with_password(
+            {"email": email, "password": password})
         if user:
             return True
     except Exception as e:
         print(f"Erro ao fazer login: {str(e)}")
     return False
 
+
 def protected_page():
     viewApp()
+
 
 def login_page():
     col_01, col_02 = st.columns(2, vertical_alignment="center", gap="large")
@@ -58,6 +62,7 @@ def login_page():
             else:
                 st.error("Credenciais inválidas", icon="❌")
 
+
 def main():
     if 'logged_in' not in st.session_state:
         st.session_state['logged_in'] = False
@@ -68,6 +73,7 @@ def main():
         protected_page()
     else:
         login_page()
+
 
 if __name__ == "__main__":
     main()
