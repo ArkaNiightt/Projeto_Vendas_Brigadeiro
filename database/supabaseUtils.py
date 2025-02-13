@@ -18,7 +18,6 @@ def inicializar_supabase():
         st.stop()
 
 
-@st.cache_data
 def get_all_data():
     supabase = inicializar_supabase()
     try:

@@ -15,11 +15,11 @@ def carregar_registro_vendas():
 
         st.header(body="Registrar uma venda", divider=True)
 
-        with st.form( 
-            key="registro_venda", 
+        with st.form(
+            key="registro_venda",
             clear_on_submit=True,
             border=True
-            ):
+        ):
             produto = st.text_input(
                 label="Produto",
                 key="produto_input",
@@ -56,10 +56,15 @@ def carregar_registro_vendas():
                 options=["Dinheiro", "Cartão", "Pix", "Boleto"],
                 key="forma_pagamento_selectbox"
             )
+            selecionar_vendedor = st.selectbox(
+                label="Vendedor",
+                options=["Joao Augusto", "Ana Paula", "Outro"],
+                key="vendedor_select"
+            )
             submit = st.form_submit_button(
-                label="Registrar Venda", 
-                type="primary", 
-                icon="📝", 
+                label="Registrar Venda",
+                type="primary",
+                icon="📝",
                 use_container_width=True
             )
 
@@ -71,7 +76,8 @@ def carregar_registro_vendas():
                 "quantidade": quantidade,
                 "data": datetime.combine(data_venda, time.min).isoformat(),
                 "fiado": fiado,
-                "forma_de_pagamento": forma_pagamento
+                "forma_de_pagamento": forma_pagamento,
+                "vendedor": selecionar_vendedor
             }
             try:
                 response = supabase.table("vendas").insert(venda).execute()

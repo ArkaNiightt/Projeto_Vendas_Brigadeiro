@@ -23,7 +23,8 @@ def showCustomers():
                 "quantidade",
                 "data",
                 "fiado",
-                "forma_de_pagamento"
+                "forma_de_pagamento",
+                "vendedor"
             ]]
 
             st.dataframe(
@@ -37,6 +38,7 @@ def showCustomers():
                     "data": st.column_config.DateColumn("Data"),
                     "fiado": st.column_config.CheckboxColumn("Fiado", pinned=True),
                     "forma_de_pagamento": st.column_config.TextColumn("Pagamento"),
+                    "vendedor": st.column_config.TextColumn("Vendedor")
                 },
                 key="dataframe_customers"
             )

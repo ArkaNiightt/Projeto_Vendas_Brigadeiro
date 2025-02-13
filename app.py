@@ -1,5 +1,3 @@
-from database.supabaseUtils import inicializar_supabase
-from view import viewApp
 import streamlit as st
 
 st.set_page_config(
@@ -7,6 +5,9 @@ st.set_page_config(
     page_icon="🛒",
     layout="wide"
 )
+
+from database.supabaseUtils import inicializar_supabase
+from view import viewApp
 
 
 supabase = inicializar_supabase()
