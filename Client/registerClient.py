@@ -31,6 +31,7 @@ def carregar_registro_vendas():
                 placeholder="Digite o nome do cliente")
             valor = st.number_input(
                 label="Valor",
+                step=1.0,
                 min_value=1.0,
                 format="%.2f",
                 key="valor_input",
