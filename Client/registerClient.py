@@ -85,5 +85,6 @@ def carregar_registro_vendas():
                 if response:
                     st.toast(f"Dados inseridos com sucesso", icon="✅")
                     st.write(response.data)
+                    st.rerun()
             except Exception as e:
                 st.error(f"Erro: {str(e)}")

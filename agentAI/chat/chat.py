@@ -63,6 +63,7 @@ def chat_agent_response():
                     with st.spinner("Exibindo dados..."):
                         sleep(1)
                         dataframe_vendas()
+                        st.toast("Dados exibidos com sucesso!", icon="✅")
 
         except KeyboardInterrupt:
             st.error("Finalizado pelo usuário.", icon="⚠️")
