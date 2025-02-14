@@ -2,6 +2,7 @@ import streamlit as st
 from Client.registerClient import carregar_registro_vendas
 from Client.showCustomers import showCustomers
 from database.supabaseUtils import inicializar_supabase
+from agentAI.chat.chat import chat_agent_response
 
 supabase = inicializar_supabase()
 
@@ -46,7 +47,7 @@ def viewApp():
             showCustomers()
         elif opcao == "Chat com Agente de IA":
             st.session_state['page'] = "chat"
-            st.markdown("🚧 Em construção...")
+            chat_agent_response()
         st.sidebar.markdown("---")
         with st.sidebar:
             st.info(
