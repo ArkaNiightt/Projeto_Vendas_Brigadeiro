@@ -57,7 +57,7 @@ def chat_agent_response():
 
             if pergunta:
 
-                with st.spinner("Processando..."):
+                with st.spinner("Processando...", show_time=True):
                     response = agents_executors_database(question=pergunta)
                     st.write(response)
                     with st.spinner("Exibindo dados..."):
