@@ -90,8 +90,8 @@ def showCustomer():
 
         if st.button("Pesquisar"):
             with st.spinner("Buscando registros..."):
-                # Filter records for the selected customer
-                customer_df = df[df['cliente'] == customer_name]
+                # Filter records for the selected customer and create an explicit copy
+                customer_df = df[df['cliente'] == customer_name].copy()
 
                 if not customer_df.empty:
                     # Convert date for display
