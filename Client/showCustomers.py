@@ -71,7 +71,7 @@ def showCustomers():
 
 
 def showCustomer():
-    if st.session_state['page'] == "pesquisar_cliente":
+    if st.session_state['page'] == "listar_vendas":
         st.title("Pesquisar Cliente")
         st.markdown("Digite o nome do cliente que deseja pesquisar.")
 
